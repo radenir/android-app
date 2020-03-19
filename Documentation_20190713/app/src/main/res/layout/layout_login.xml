@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_email"
+        android:background="#11000000"
+        android:textColor="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/et_email"
+        android:layout_alignLeft="@+id/et_email"
+        android:layout_marginTop="20dp"
+        android:text="@string/tv_email"
+        android:textColor="#ffcccccc"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:background="#11000000"
+        android:textColor="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_below="@id/et_email"
+        android:layout_alignStart="@id/et_email"
+        android:layout_alignLeft="@id/et_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_email"
+        android:layout_alignStart="@+id/et_password"
+        android:layout_alignLeft="@+id/et_password"
+        android:layout_marginTop="20dp"
+        android:text="@string/tv_password"
+        android:textColor="#ffcccccc"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:layout_below="@+id/et_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/btn_login" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:textColor="#ffcccccc"
+        android:text="@string/tv_register" />
+
+</RelativeLayout>

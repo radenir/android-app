@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Documentation_20190713</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!-- layout_login.xml -->
+    <string name="tv_email">Email</string>
+    <string name="tv_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="tv_register">Register Me</string>
+
+    <!-- layout_register.xml -->
+    <string name="tv_login">Back to Login</string>
+    <string name="tv_name">Name</string>
+    <string name="btn_register">Sign Up</string>
+
+    <!-- fragment_measurements.xml -->
+    <string name="tv_pulse">Pulse: </string>
+    <string name="tv_accelerometer">AccX:   AccY:   AccZ: </string>
+    <string name="tv_temperature">Temperature: </string>
+
+    <!-- SerialSocket.java -->
+    <string name="pairing_request">PAIRING requested\n-> Perform pairing steps. Connect again</string>
+
+    <!-- Settings.java -->
+    <string name="devices">Bluetooth LE Devices</string>
+    <string name="location_permission_title">Location permission required</string>
+    <string name="location_permission_message">This app does not use location information, but scanning for Bluetooth LE devices requires this permission</string>
+    <string name="location_denied_title">Location permission denied</string>
+    <string name="location_denied_message">As location permission has not been granted, this app cannot scan for Bluetooth LE devices.</string>
+
+</resources>
