@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         {
             isLoggedIn(old_token);
         }
+        //THIS CODE SKIPS LOGIN
+        Intent i = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(i);
+        //END OF SKIP LOGIN
+
         //if old_token is null just keep executing the code here
         //no token stored, stay in MainActivity
 
