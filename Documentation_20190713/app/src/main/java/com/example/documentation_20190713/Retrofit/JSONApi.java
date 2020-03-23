@@ -33,6 +33,14 @@ public interface JSONApi {
     Call<Pulse> savePulse(@Header("Authorization") String auth, @Body Pulse pulse);
 
     //save position entry to database for this user
-    @POST("api/positions")
+    @POST("api/accelerometers")
     Call<Position> savePosition(@Header("Authorization") String auth, @Body Position position);
+
+    //save temperature entry to database for this user
+    @POST("api/ekgs")
+    Call<Ekg> saveEkg(@Header("Authorization") String auth, @Body Ekg ekg);
+
+    //save pulse entry to database for this user
+    @POST("api/currents")
+    Call<Current> saveCurrent(@Header("Authorization") String auth, @Body Current current);
 }

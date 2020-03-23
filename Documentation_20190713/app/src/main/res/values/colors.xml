@@ -9,5 +9,7 @@
     <color name="colorChartAccX">#f7d47a</color>
     <color name="colorChartAccY">#b1cc9f</color>
     <color name="colorChartAccZ">#a5dad2</color>
+    <color name="colorChartEkg">#b1cc9f</color>
+    <color name="colorChartCurrent">#a5dad2</color>
 
 </resources>

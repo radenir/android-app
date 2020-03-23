@@ -17,6 +17,8 @@
     <string name="tv_pulse">Pulse: </string>
     <string name="tv_accelerometer">AccX:   AccY:   AccZ: </string>
     <string name="tv_temperature">Temperature: </string>
+    <string name="tv_ekg">Ekg: </string>
+    <string name="tv_current">Current: </string>
 
     <!-- SerialSocket.java -->
     <string name="pairing_request">PAIRING requested\n-> Perform pairing steps. Connect again</string>

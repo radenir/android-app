@@ -40,6 +40,8 @@ import com.example.documentation_20190713.Bluetooth.SerialListener;
 import com.example.documentation_20190713.Bluetooth.SerialService;
 import com.example.documentation_20190713.Bluetooth.SerialSocket;
 import com.example.documentation_20190713.R;
+import com.example.documentation_20190713.Retrofit.Current;
+import com.example.documentation_20190713.Retrofit.Ekg;
 import com.example.documentation_20190713.Retrofit.Position;
 import com.example.documentation_20190713.Retrofit.Pulse;
 import com.example.documentation_20190713.Retrofit.RetrofitClient;
@@ -108,6 +110,16 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
     LineData dataTmp;
     TextView tvTmp;
     float tmp = 0.0f;
+    //ekg
+    LineChart chartEkg;
+    LineData dataEkg;
+    TextView tvEkg;
+    float ekg = 0.0f;
+    //current
+    LineChart chartCurrent;
+    LineData dataCurrent;
+    TextView tvCurrent;
+    float current = 0.0f;
     //maximal number of data seen in charts
     final int MAX_CHART_ENTRIES = 500;
     boolean stop_chart = false;
@@ -123,6 +135,8 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
         dataPulse = new LineData();
         dataAcc = new LineData();
         dataTmp = new LineData();
+        dataEkg = new LineData();
+        dataCurrent = new LineData();
     }
 
     //Life cycle of the fragment
@@ -168,6 +182,18 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
         chartTmp.setData(dataTmp);
         chartSettings(chartTmp);
         tvTmp = view.findViewById(R.id.tv_temperature);
+        //ekg
+        chartEkg = view.findViewById(R.id.chart_ekg);
+        dataEkg.setValueTextColor(Color.BLACK);
+        chartEkg.setData(dataEkg);
+        chartSettings(chartEkg);
+        tvEkg = view.findViewById(R.id.tv_ekg);
+        //current
+        chartCurrent = view.findViewById(R.id.chart_current);
+        dataCurrent.setValueTextColor(Color.BLACK);
+        chartCurrent.setData(dataCurrent);
+        chartSettings(chartCurrent);
+        tvCurrent = view.findViewById(R.id.tv_current);
 
         //text to speech initialization
         initializeTextToSpeech();
@@ -437,6 +463,34 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
                             "deine Körpertemperatur ist " + Float.toString(tmp) + "Grad Celsius");*/
                 }
                 break;
+            case 'e':
+                ekg = Float.parseFloat(str.substring(1));
+                if(sendToWebserver) {
+                    saveEkg(this.token, ekg);
+                }
+                addEntry(ekg, chartEkg,0, R.color.colorChartEkg);
+                if(ekg == 63) {
+/*                    speak("Your pulse is " + Float.toString(pulse) + "bpm " +
+                            "and your body temperature is " + Float.toString(tmp) + "degrees Celsius");*/
+
+/*                    speak("Dein Puls ist " + Float.toString(pulse) + "bpm, " +
+                            "deine Körpertemperatur ist " + Float.toString(tmp) + "Grad Celsius");*/
+                }
+                break;
+            case 'i':
+                current = Float.parseFloat(str.substring(1));
+                if(sendToWebserver) {
+                    saveCurrent(this.token, current);
+                }
+                addEntry(current, chartCurrent,0, R.color.colorChartCurrent);
+                if(current == 63) {
+/*                    speak("Your pulse is " + Float.toString(pulse) + "bpm " +
+                            "and your body temperature is " + Float.toString(tmp) + "degrees Celsius");*/
+
+/*                    speak("Dein Puls ist " + Float.toString(pulse) + "bpm, " +
+                            "deine Körpertemperatur ist " + Float.toString(tmp) + "Grad Celsius");*/
+                }
+                break;
             case 'n':
                 //error on ESP32
                 break;
@@ -456,6 +510,8 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
                 tvAccelerometer.setText("AccX: " + Float.toString(accX) + " AccY: " + Float.toString(accY) +
                         " AccZ: " + Float.toString(accZ));
                 tvTmp.setText("Temperature: " + Float.toString(tmp));
+                tvEkg.setText("Ekg: " + Float.toString(ekg));
+                tvCurrent.setText("Current: " + Float.toString(current));
             }
         });
     }
@@ -759,6 +815,54 @@ public class MeasurementsFragment extends Fragment implements ServiceConnection,
 
             @Override
             public void onFailure(Call<Position> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void saveEkg(final String token, final Float value) {
+        final Ekg request = new Ekg(value);
+
+        String auth = "Bearer " + token;
+        Call<Ekg> call = RetrofitClient.getInstance().getApi().saveEkg(auth, request);
+
+        call.enqueue(new Callback<Ekg>() {
+            @Override
+            public void onResponse(Call<Ekg> call, Response<Ekg> response) {
+                if(!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //tvName.setText("Value: "+ response.body().getValue() + "\n");
+            }
+
+            @Override
+            public void onFailure(Call<Ekg> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void saveCurrent(final String token, final Float value) {
+        final Current request = new Current(value);
+
+        String auth = "Bearer " + token;
+        Call<Current> call = RetrofitClient.getInstance().getApi().saveCurrent(auth, request);
+
+        call.enqueue(new Callback<Current>() {
+            @Override
+            public void onResponse(Call<Current> call, Response<Current> response) {
+                if(!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //tvName.setText("Value: "+ response.body().getValue() + "\n");
+            }
+
+            @Override
+            public void onFailure(Call<Current> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

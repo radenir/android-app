@@ -81,6 +81,52 @@
                 app:layout_constraintBottom_toBottomOf="parent"></com.github.mikephil.charting.charts.LineChart>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_ekg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_ekg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_temperature" />
+
+        <LinearLayout
+            android:id="@+id/layout_ekg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ekg">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_ekg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"></com.github.mikephil.charting.charts.LineChart>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_current"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_current"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_ekg" />
+
+        <LinearLayout
+            android:id="@+id/layout_current"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_current">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_current"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"></com.github.mikephil.charting.charts.LineChart>
+        </LinearLayout>
+
     </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
